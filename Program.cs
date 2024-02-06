@@ -3,7 +3,6 @@
     static void Main()
     {
         Console.WriteLine(Greeting());
-        
     }
 
     public static string Greeting()
