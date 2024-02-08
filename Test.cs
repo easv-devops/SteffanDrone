@@ -11,6 +11,6 @@ public class Tests
         var result = Program.Greeting();
 
         Console.WriteLine(result);
-        Assert.That(result.Equals("Hello, Drone CI!"));
+        Assert.That(result.Equals("Hello,  Drone CI!"));
     }
 }
