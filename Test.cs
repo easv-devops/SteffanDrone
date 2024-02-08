@@ -1,5 +1,4 @@
 ﻿using NUnit.Framework;
-
 namespace SteffanDrone;
 
 public class Tests
