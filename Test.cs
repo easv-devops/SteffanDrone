@@ -47,3 +47,30 @@ public class LanguageRepository
     }
 }
 
+public class LanguageRepository
+{
+    private readonly IDbConnection connection;
+
+    public LanguageRepository(IDbConnection connection)
+    {
+        this.connection = connection;
+    }
+
+    public IEnumerable<string> GetAll()
+    {
+        using (connection)
+        {
+            return connection.Query<string>("SELECT name FROM `Languages").ToArray();
+        }
+    }
+
+    public string GetByCode(string code)
+    {
+        return connection.QuerySingle<string>("SELECT name FROM `Languages` WHERE code = @code", new { code });
+    }
+
+    public void Save(int id, string code, string name)
+    {
+        connection.Execute("INSERT INTO `Languages` (name, code) VALUES (@name, @code)", new { name, code });
+    }
+}
