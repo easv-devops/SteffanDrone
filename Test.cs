@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using System.Data;
+using NUnit.Framework;
 namespace SteffanDrone;
 
 public class Tests
@@ -14,3 +15,35 @@ public class Tests
         Assert.That(result.Equals("Hello,  Drone CI!"));
     }
 }
+
+
+
+public class LanguageRepository
+{
+    private IDbConnection connection = ConnectionHelper.GetMySQLConnection();
+
+    public IEnumerable<string> GetAll()
+    {
+        using (connection)
+        {
+            return connection.Query<string>("SELECT name FROM `Languages").ToArray();
+        }
+    }
+
+    public string GetByCode(string code)
+    {
+        return connection.QuerySingle<string>("SELECT name FROM `Lanaguages` WHERE code = + code);
+    }
+
+    public void Save(int id, string code, string name)
+    {
+        connection.Execute("INSERT INTO `Languages` (name, code) VALUES (@name, @code)", new { name, code });
+    }
+
+    private IDbConnection GetConnection()
+    {
+        return new MySqlConnection(
+            "Server-acme-corporation-database; Database-language-db; Uid-sa; Pwd=0f8ExKawAd8aIGS;");
+    }
+}
+
