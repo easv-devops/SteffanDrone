@@ -12,12 +12,12 @@ public class Tests
         var result = Program.Greeting();
 
         Console.WriteLine(result);
-        Assert.That(result.Equals("Hello,  Drone CI!"));
+        Assert.That(result.Equals("Hello, Drone CI!"));
     }
 }
 
 
-
+/*
 public class LanguageRepository
 {
     private IDbConnection connection = ConnectionHelper.GetMySQLConnection();
@@ -73,4 +73,6 @@ public class LanguageRepository
     {
         connection.Execute("INSERT INTO `Languages` (name, code) VALUES (@name, @code)", new { name, code });
     }
+   
 }
+ */
